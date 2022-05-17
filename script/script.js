@@ -19,8 +19,10 @@ function calculateMovement(sphere, x, y, vel) {
   let rotationY = (numberOfSpheres * y) / 6;
   let velocity = vel + numberOfSpheres / 2;
 
+  i= 10000;
+
   setInterval(() => {
-    i = i + 1;
+    i = i + .5;
 
     midX = body.clientWidth / 4;
     midY = body.clientHeight;
@@ -35,7 +37,14 @@ function calculateMovement(sphere, x, y, vel) {
     sphere.style.backgroundColor = `hsl(${vel / 6.5 - 5}, 100%, ${
       vel / 7 + 18
     }%)`;
+
+   
+
   }, 14);
+
+
+
+ 
 }
 
 function generateSphere(i) {

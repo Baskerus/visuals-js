@@ -22,7 +22,7 @@ body {
   font-size: 12px;
   color: white;
   height: 100vh;
-  background-color: #1a1a1b;
+  background-color: #030303;
   overflow: hidden;
 }
 
@@ -66,7 +66,7 @@ body {
   width: 220px;
 }
 
-.ball-container {
+.sphere-container {
   margin-top: 20px;
   width: 420px;
   height: 420px;
