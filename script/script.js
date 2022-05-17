@@ -1,29 +1,23 @@
-let numberOfBalls = 150;
-let ballsArray = [];
+let numberOfSpheres = 120;
+let spheresArray = [];
 const body = document.getElementById("body");
 
-function createBalls() {
-  for (i = 0; i < numberOfBalls; i++) {
-    ballsArray.push(generateBall(i));
+function createSpheres() {
+  for (i = 0; i < numberOfSpheres; i++) {
+    spheresArray.push(generateSphere(i));
   }
 
-  ballsArray.forEach((ball) => {
-    ballContainer.appendChild(ball);
+  spheresArray.forEach((sphere) => {
+    sphereContainer.appendChild(sphere);
   });
 }
 
-newBall = createBalls();
+newSphere = createSpheres();
 
-function move(ball, x, y) {
-  setTimeout(() => {
-    calculateMovement(ball, x, y);
-  });
-}
-
-function calculateMovement(ball, x, y, vel) {
-  let rotationX = (numberOfBalls * x) / 6;
-  let rotationY = (numberOfBalls * y) / 6;
-  let velocity = vel + numberOfBalls / 2;
+function calculateMovement(sphere, x, y, vel) {
+  let rotationX = (numberOfSpheres * x) / 6;
+  let rotationY = (numberOfSpheres * y) / 6;
+  let velocity = vel + numberOfSpheres / 2;
 
   setInterval(() => {
     i = i + 1;
@@ -31,28 +25,28 @@ function calculateMovement(ball, x, y, vel) {
     midX = body.clientWidth / 4;
     midY = body.clientHeight;
 
-    ball.style.top =
+    sphere.style.top =
       -Math.tan(i / rotationY + velocity) * velocity + midX + "px";
-    ball.style.left =
+    sphere.style.left =
       Math.sin(i / rotationX + velocity) * velocity + midY + "px";
 
     // Changes hue at certain speed
     // Hue and lightness based on velocity (ember effect)
-    ball.style.backgroundColor = `hsl(${vel / 6.5 - 20}, 100%, ${
+    sphere.style.backgroundColor = `hsl(${vel / 6.5 - 5}, 100%, ${
       vel / 7 + 18
     }%)`;
-  }, 15);
+  }, 14);
 }
 
-function generateBall(i) {
-  const newBall = document.createElement("div");
+function generateSphere(i) {
+  const newSphere = document.createElement("div");
   color = getRandomColor();
 
-  newBall.classList.add("ball", `index${i}`);
-  newBall.style.backgroundColor = color;
+  newSphere.classList.add("ball", `index${i}`);
+  newSphere.style.backgroundColor = color;
   /*   newBall.style.boxShadow = `0px 0px 10px orange`; */
 
-  return newBall;
+  return newSphere;
 }
 
 function getRandomColor() {
@@ -67,9 +61,9 @@ function getRandomVelocity() {
   return Math.floor(Math.random() * 350) + 10;
 }
 
-ballsArray.forEach((ball) => {
+spheresArray.forEach((sphere) => {
   calculateMovement(
-    ball,
+    sphere,
     getRandomNumber(),
     getRandomNumber(),
     getRandomVelocity()
