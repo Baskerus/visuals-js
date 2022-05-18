@@ -16,13 +16,13 @@ newSphere = createSpheres();
 
 function calculateMovement(sphere, x, y, vel) {
   let rotationX = (numberOfSpheres * x) / 6;
-  let rotationY = (numberOfSpheres * y) / 6;
+  let rotationY = (numberOfSpheres * y) / 10;
   let velocity = vel + numberOfSpheres / 2;
 
-  i= 10000;
+  i = 10000;
 
   setInterval(() => {
-    i = i + .5;
+    i = i + 0.6;
 
     midX = body.clientWidth / 4;
     midY = body.clientHeight;
@@ -32,28 +32,21 @@ function calculateMovement(sphere, x, y, vel) {
     sphere.style.left =
       Math.sin(i / rotationX + velocity) * velocity + midY + "px";
 
-    // Changes hue at certain speed
     // Hue and lightness based on velocity (ember effect)
-    sphere.style.backgroundColor = `hsl(${vel / 6.5 - 5}, 100%, ${
-      vel / 7 + 18
+    sphere.style.backgroundColor = `hsl(${(vel - 150) / 6 - 10}, 100%, ${
+      vel / 7
     }%)`;
-
-   
-
-  }, 14);
-
-
-
- 
+  }, 20);
 }
 
 function generateSphere(i) {
   const newSphere = document.createElement("div");
-  color = getRandomColor();
 
+  sphereSize = Math.floor(Math.random() * 8 + 3);
   newSphere.classList.add("ball", `index${i}`);
-  newSphere.style.backgroundColor = color;
-  /*   newBall.style.boxShadow = `0px 0px 10px orange`; */
+  newSphere.style.width = `${sphereSize}px`;
+  newSphere.style.height = `${sphereSize}px`;
+  newSphere.style.opacity = Math.random() + 0.9;
 
   return newSphere;
 }
@@ -67,7 +60,7 @@ function getRandomNumber() {
 }
 
 function getRandomVelocity() {
-  return Math.floor(Math.random() * 350) + 10;
+  return Math.floor(Math.random() * 550) + 10;
 }
 
 spheresArray.forEach((sphere) => {
