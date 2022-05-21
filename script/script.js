@@ -46,7 +46,7 @@ function calculateMovement(sphere, x, y, vel) {
       }%)`;
     }
 
-    if (i == 100000) {
+    if (i == 400000) {
       i = 10000;
     }
   }, 22);
