@@ -66,6 +66,15 @@ body {
   overflow: hidden;
 }
 
+.pause {
+  position: absolute;
+
+  width: 300px;
+  top: 16px;
+  left: calc(50% - 120px);
+  font-size: 20px;
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;

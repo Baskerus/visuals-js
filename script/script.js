@@ -1,7 +1,13 @@
 let numberOfSpheres = 120;
 let spheresArray = [];
+let isPaused = false;
 const body = document.getElementById("body");
 
+document.body.onkeyup = function (e) {
+  if (e.key == " " || e.code == "Space" || e.keyCode == 32) {
+    isPaused = !isPaused;
+  }
+};
 function createSpheres() {
   for (i = 0; i < numberOfSpheres; i++) {
     spheresArray.push(generateSphere(i));
@@ -22,21 +28,28 @@ function calculateMovement(sphere, x, y, vel) {
   i = 10000;
 
   setInterval(() => {
-    i = i + 0.6;
+    if (!isPaused) {
+      i = Math.round(i + 0.5);
 
-    midX = body.clientWidth / 4;
-    midY = body.clientHeight;
+      midX = body.clientWidth / 3;
+      midY = body.clientHeight;
 
-    sphere.style.top =
-      -Math.tan(i / rotationY + velocity) * velocity + midX + "px";
-    sphere.style.left =
-      Math.sin(i / rotationX + velocity) * velocity + midY + "px";
+      sphere.style.top =
+        -Math.tan(i / rotationY + velocity) * velocity + midX + "px";
 
-    // Hue and lightness based on velocity (ember effect)
-    sphere.style.backgroundColor = `hsl(${(vel - 150) / 6 - 10}, 100%, ${
-      vel / 7
-    }%)`;
-  }, 20);
+      sphere.style.left =
+        Math.sin(i / rotationX + velocity) * velocity + midY + "px";
+
+      // Hue and lightness based on velocity (ember effect)
+      sphere.style.backgroundColor = `hsl(${(vel - 150) / 6 - 10}, 100%, ${
+        vel / 7
+      }%)`;
+    }
+
+    if (i == 100000) {
+      i = 10000;
+    }
+  }, 22);
 }
 
 function generateSphere(i) {
